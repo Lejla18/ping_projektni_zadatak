@@ -1,0 +1,82 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.InspekcijskaKontrola
+
+@{
+    ViewBag.Title = "Brisanje inspekcijske kontrole";
+}
+
+    <style>
+
+        label {
+            font-weight: normal !important;
+        }
+    </style>
+<br />
+<br />
+<h3>Da li želite izbrisati odabranu kontrolu ?</h3>
+
+<br />
+
+
+<table class="table">
+
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumKontrole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.NazivProizvoda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InspekcijskoTijelo.NazivTijela)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RezultatiKontrole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodSiguran)
+
+        </th>
+    </tr>
+
+
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.DatumKontrole)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Proizvod.NazivProizvoda)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.InspekcijskoTijelo.NazivTijela)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.RezultatiKontrole)
+        </td>
+        <td>
+            @if (Model.ProizvodSiguran)
+            {
+                @Html.Label("Da")
+            }
+            @if (!Model.ProizvodSiguran)
+            {
+                @Html.Label("Ne")
+            }
+        </td>
+
+    </tr>
+
+
+
+</table>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Izbriši" class="btn btn-danger" /> |
+            @Html.ActionLink("Nazad", "Details")
+        </div>
+    }
+

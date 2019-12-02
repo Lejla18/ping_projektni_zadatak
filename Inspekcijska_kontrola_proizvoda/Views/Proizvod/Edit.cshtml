@@ -1,0 +1,75 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.Proizvod
+
+@{
+    ViewBag.Title = "Izmjena podataka o proizvodu";
+}
+
+<br />
+<br />
+<h3>Izmjena podataka o proizvodu</h3>
+<br />
+<br />
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.ProizvodID)
+        @Html.HiddenFor(model => model.Izbrisan)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.NazivProizvoda, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.NazivProizvoda, new { htmlAttributes = new { @class = "form-control" , autocomplete = "off"} })
+                @Html.ValidationMessageFor(model => model.NazivProizvoda, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Proizvodjac, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Proizvodjac, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Proizvodjac, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SerijskiBroj, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SerijskiBroj, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.SerijskiBroj, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ZemljaPorijekla, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ZemljaPorijekla, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.ZemljaPorijekla, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Opis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Opis, new { htmlAttributes = new { @class = "form-control", autocomplete = "off" } })
+                @Html.ValidationMessageFor(model => model.Opis, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Izmijeni" class="btn btn-warning btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad", "Details")
+</div>

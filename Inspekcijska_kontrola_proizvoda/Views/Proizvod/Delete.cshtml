@@ -1,0 +1,91 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.Proizvod
+
+@{
+    ViewBag.Title = "Delete";
+}
+<style>
+
+    label {
+        font-weight: normal !important;
+    }
+</style>
+<br />
+<br />
+
+
+<h4>Da li želite obrisati odabrani proizvod ?</h4>
+
+
+<br />
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazivProizvoda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvodjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SerijskiBroj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZemljaPorijekla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Opis)
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.NazivProizvoda)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Proizvodjac)
+        </td>
+        <td>
+            @if (Model.SerijskiBroj.IsEmpty())
+            {
+                @Html.Label("Nepoznato")
+            }
+
+            else
+            {
+                @Html.DisplayFor(model => model.SerijskiBroj)
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.ZemljaPorijekla)
+        </td>
+        <td>
+            @if (Model.Opis == null)
+            {
+                @Html.Label("Nema opisa");
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.Opis)
+            }
+        </td>
+    </tr>
+
+</table>
+
+
+
+ @using (Html.BeginForm())
+  {
+    @Html.AntiForgeryToken()
+
+      <div class="form-actions no-color">
+         <input type="submit" value="Izbriši" class="btn btn-danger" /> |
+            @Html.ActionLink("Nazad", "Details")
+      </div>
+
+ }
+
+
+

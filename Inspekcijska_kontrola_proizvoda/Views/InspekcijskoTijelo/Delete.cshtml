@@ -1,0 +1,73 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.InspekcijskoTijelo
+
+@{
+    ViewBag.Title = "Brisanje";
+}
+<br />
+<br />
+
+<h4>Da li želite obrisati odabrano inspekcijsko tijelo ?</h4>
+
+
+<br />
+<br />
+
+<table class="table">
+
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.InspekcijskoTijeloID)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.NazivTijela)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Inspektorat)
+        </th>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Nadleznost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.KontaktOsoba)
+        </th>
+
+    </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(model => model.InspekcijskoTijeloID)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.NazivTijela)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Inspektorat.NazivInspektorata)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.Nadleznost)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.KontaktOsoba)
+        </td>
+    </tr>
+
+</table>
+
+
+
+@using (Html.BeginForm())
+{
+     @Html.AntiForgeryToken()
+
+     <div class="form-actions no-color">
+         <input type="submit" value="Izbriši" class="btn btn-danger" /> |
+             @Html.ActionLink("Nazad", "Details")
+     </div>
+
+ }
+
+
+

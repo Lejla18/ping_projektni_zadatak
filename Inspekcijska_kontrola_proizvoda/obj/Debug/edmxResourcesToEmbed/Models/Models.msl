@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ping_inspekcijska_kontrola_proizvodaModelStoreContainer" CdmEntityContainer="ping_inspekcijska_kontrola_proizvodaEntities">
+    <EntitySetMapping Name="InspekcijskaKontrola">
+      <EntityTypeMapping TypeName="ping_inspekcijska_kontrola_proizvodaModel.InspekcijskaKontrola">
+        <MappingFragment StoreEntitySet="InspekcijskaKontrola">
+          <ScalarProperty Name="InspekcijskaKontrolaID" ColumnName="InspekcijskaKontrolaID" />
+          <ScalarProperty Name="ProizvodID" ColumnName="ProizvodID" />
+          <ScalarProperty Name="InspekcijskoTijeloID" ColumnName="InspekcijskoTijeloID" />
+          <ScalarProperty Name="DatumKontrole" ColumnName="DatumKontrole" />
+          <ScalarProperty Name="RezultatiKontrole" ColumnName="RezultatiKontrole" />
+          <ScalarProperty Name="ProizvodSiguran" ColumnName="ProizvodSiguran" />
+          <ScalarProperty Name="Izbrisan" ColumnName="Izbrisan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="InspekcijskoTijelo">
+      <EntityTypeMapping TypeName="ping_inspekcijska_kontrola_proizvodaModel.InspekcijskoTijelo">
+        <MappingFragment StoreEntitySet="InspekcijskoTijelo">
+          <ScalarProperty Name="InspekcijskoTijeloID" ColumnName="InspekcijskoTijeloID" />
+          <ScalarProperty Name="NazivTijela" ColumnName="NazivTijela" />
+          <ScalarProperty Name="InspektoratID" ColumnName="InspektoratID" />
+          <ScalarProperty Name="Nadleznost" ColumnName="Nadleznost" />
+          <ScalarProperty Name="KontaktOsoba" ColumnName="KontaktOsoba" />
+          <ScalarProperty Name="Izbrisan" ColumnName="Izbrisan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Inspektorat">
+      <EntityTypeMapping TypeName="ping_inspekcijska_kontrola_proizvodaModel.Inspektorat">
+        <MappingFragment StoreEntitySet="Inspektorat">
+          <ScalarProperty Name="InspektoratID" ColumnName="InspektoratID" />
+          <ScalarProperty Name="NazivInspektorata" ColumnName="NazivInspektorata" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proizvod">
+      <EntityTypeMapping TypeName="ping_inspekcijska_kontrola_proizvodaModel.Proizvod">
+        <MappingFragment StoreEntitySet="Proizvod">
+          <ScalarProperty Name="ProizvodID" ColumnName="ProizvodID" />
+          <ScalarProperty Name="NazivProizvoda" ColumnName="NazivProizvoda" />
+          <ScalarProperty Name="Proizvodjac" ColumnName="Proizvodjac" />
+          <ScalarProperty Name="SerijskiBroj" ColumnName="SerijskiBroj" />
+          <ScalarProperty Name="ZemljaPorijekla" ColumnName="ZemljaPorijekla" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+          <ScalarProperty Name="Izbrisan" ColumnName="Izbrisan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

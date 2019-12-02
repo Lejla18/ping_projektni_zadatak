@@ -1,0 +1,24 @@
+﻿
+
+
+
+@if (@ViewBag.uspjesno_dodan)
+{
+    <script>
+        if (confirm("Inspekcijsko tijelo uspješno unešeno !")) {
+
+
+
+            location.href = '/InspekcijskoTijelo/Details'
+
+        }
+        else {
+            location.href = '/InspekcijskoTijelo/Create'
+        }
+
+    </script>
+
+}
+
+
+

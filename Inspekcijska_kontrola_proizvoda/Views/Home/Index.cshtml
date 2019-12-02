@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Početna stranica";
+}
+
+    <div class="jumbotron">
+        <img class="pull-left" src="~/NewFolder2/grb.png" />
+        <br /><br /><br />
+        <h2 class="text-right" style="border:medium">Registar izvršenih kontrola proizvoda na području BiH</h2>
+        <h3 class="text-right" style="border:medium">Evidencija proizvoda i inspekcijskih tijela BiH</h3>
+
+        <br /><br />
+        <br /><br />
+        <br /><br />
+
+    </div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Proizvodi</h2>
+        <p>
+            Mogućnost unosa novog proizvoda, izmjene podataka o postojećem proizvodu i brisana odabranog proizvoda
+        </p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Create", "Proizvod")'>Unos novog proizvoda</a></p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Details", "Proizvod")'>Lista proizvoda</a></p>
+
+    </div>
+    <div class="col-md-4">
+        <h2>Inspekcijska tijela</h2>
+        <p>Mogućnost unosa novog inspekcijskog tijela, izmjene podataka o postojećem tijelu i brisanja odabranog tijela</p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Create", "InspekcijskoTijelo")'>Unos novog inspekcijskog tijela</a></p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Details", "InspekcijskoTijelo")'>Lista inspekcijskih tijela</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Inspekcijske kontrole</h2>
+        <p>Mogućnost unosa nove kontrole, izmjene podataka o postojećoj kontroli i brisanja odabrane kontrole</p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Create", "InspekcijskaKontrola")'>Unos nove inspekcijske kontrole</a></p>
+        <p><a class="btn btn-primary btn-lg btn-block" href='@Url.Action("Details", "InspekcijskaKontrola")'>Lista inspekcijskih kontrola</a></p>
+    </div>
+</div>

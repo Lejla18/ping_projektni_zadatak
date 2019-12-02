@@ -1,0 +1,21 @@
+﻿
+
+@if (@ViewBag.uspjesno_dodan)
+{
+    <script>
+        if (confirm("Inspekcijska kontrola uspješno unešena !")) {
+
+
+
+            location.href = '/InspekcijskaKontrola/Details'
+
+        }
+        else {
+             location.href = '/InspekcijskaKontrola/Create'
+        }
+
+    </script>
+
+}
+
+

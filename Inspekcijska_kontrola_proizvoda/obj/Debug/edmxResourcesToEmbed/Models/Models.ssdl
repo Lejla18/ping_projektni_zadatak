@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ping_inspekcijska_kontrola_proizvodaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="InspekcijskaKontrola">
+    <Key>
+      <PropertyRef Name="InspekcijskaKontrolaID" />
+    </Key>
+    <Property Name="InspekcijskaKontrolaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProizvodID" Type="int" Nullable="false" />
+    <Property Name="InspekcijskoTijeloID" Type="int" Nullable="false" />
+    <Property Name="DatumKontrole" Type="date" Nullable="false" />
+    <Property Name="RezultatiKontrole" Type="text" Nullable="false" />
+    <Property Name="ProizvodSiguran" Type="bit" Nullable="false" />
+    <Property Name="Izbrisan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="InspekcijskoTijelo">
+    <Key>
+      <PropertyRef Name="InspekcijskoTijeloID" />
+    </Key>
+    <Property Name="InspekcijskoTijeloID" Type="int" Nullable="false" />
+    <Property Name="NazivTijela" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="InspektoratID" Type="int" Nullable="false" />
+    <Property Name="Nadleznost" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KontaktOsoba" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Izbrisan" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Inspektorat">
+    <Key>
+      <PropertyRef Name="InspektoratID" />
+    </Key>
+    <Property Name="InspektoratID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazivInspektorata" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Proizvod">
+    <Key>
+      <PropertyRef Name="ProizvodID" />
+    </Key>
+    <Property Name="ProizvodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NazivProizvoda" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Proizvodjac" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SerijskiBroj" Type="nvarchar" MaxLength="50" />
+    <Property Name="ZemljaPorijekla" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Opis" Type="text" />
+    <Property Name="Izbrisan" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_InspekcijskaKontrola_InspekcijskoTijelo">
+    <End Role="InspekcijskoTijelo" Type="Self.InspekcijskoTijelo" Multiplicity="1" />
+    <End Role="InspekcijskaKontrola" Type="Self.InspekcijskaKontrola" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="InspekcijskoTijelo">
+        <PropertyRef Name="InspekcijskoTijeloID" />
+      </Principal>
+      <Dependent Role="InspekcijskaKontrola">
+        <PropertyRef Name="InspekcijskoTijeloID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InspekcijskaKontrola_Proizvod">
+    <End Role="Proizvod" Type="Self.Proizvod" Multiplicity="1" />
+    <End Role="InspekcijskaKontrola" Type="Self.InspekcijskaKontrola" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proizvod">
+        <PropertyRef Name="ProizvodID" />
+      </Principal>
+      <Dependent Role="InspekcijskaKontrola">
+        <PropertyRef Name="ProizvodID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InspekcijskoTijelo_Inspektorat">
+    <End Role="Inspektorat" Type="Self.Inspektorat" Multiplicity="1" />
+    <End Role="InspekcijskoTijelo" Type="Self.InspekcijskoTijelo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspektorat">
+        <PropertyRef Name="InspektoratID" />
+      </Principal>
+      <Dependent Role="InspekcijskoTijelo">
+        <PropertyRef Name="InspektoratID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ping_inspekcijska_kontrola_proizvodaModelStoreContainer">
+    <EntitySet Name="InspekcijskaKontrola" EntityType="Self.InspekcijskaKontrola" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="InspekcijskoTijelo" EntityType="Self.InspekcijskoTijelo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Inspektorat" EntityType="Self.Inspektorat" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proizvod" EntityType="Self.Proizvod" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_InspekcijskaKontrola_InspekcijskoTijelo" Association="Self.FK_InspekcijskaKontrola_InspekcijskoTijelo">
+      <End Role="InspekcijskoTijelo" EntitySet="InspekcijskoTijelo" />
+      <End Role="InspekcijskaKontrola" EntitySet="InspekcijskaKontrola" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InspekcijskaKontrola_Proizvod" Association="Self.FK_InspekcijskaKontrola_Proizvod">
+      <End Role="Proizvod" EntitySet="Proizvod" />
+      <End Role="InspekcijskaKontrola" EntitySet="InspekcijskaKontrola" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InspekcijskoTijelo_Inspektorat" Association="Self.FK_InspekcijskoTijelo_Inspektorat">
+      <End Role="Inspektorat" EntitySet="Inspektorat" />
+      <End Role="InspekcijskoTijelo" EntitySet="InspekcijskoTijelo" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

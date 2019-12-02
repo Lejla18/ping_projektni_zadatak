@@ -1,0 +1,22 @@
+﻿
+
+@if (@ViewBag.uspjesno_dodan)
+{
+    <script>
+        if (confirm("Proizvod uspješno unešen !")) {
+
+
+
+            location.href = '/Proizvod/Details'
+
+        }
+        else {
+             location.href = '/Proizvod/Create'
+        }
+
+    </script>
+
+}
+
+
+

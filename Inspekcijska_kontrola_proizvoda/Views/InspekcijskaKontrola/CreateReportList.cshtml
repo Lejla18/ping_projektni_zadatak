@@ -1,0 +1,126 @@
+﻿@model IEnumerable<Inspekcijska_kontrola_proizvoda.Models.InspekcijskaKontrola>
+
+@{
+    ViewBag.Title = "Kreiranje izvještaja";
+}
+
+<style>
+
+    label {
+    font-weight: normal !important;
+}
+</style>
+<div class="text-danger">
+    @Html.ValidationSummary(false)
+</div>
+<br />
+<br />
+<h4 align="center">Spisak inspekcijskih kontrola za @ViewBag.InspekcijskoTijelo u periodu od @ViewBag.pocetniDatum godine do @ViewBag.krajnjiDatum godine</h4>
+<br />
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.DatumKontrole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.NazivProizvoda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.Proizvodjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.SerijskiBroj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Proizvod.Opis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RezultatiKontrole)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProizvodSiguran)
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatumKontrole)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proizvod.NazivProizvoda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proizvod.Proizvodjac)
+            </td>
+            <td>
+                @if (item.Proizvod.SerijskiBroj.IsEmpty())
+                {
+                    @Html.Label("Nepoznato")
+                }
+
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Proizvod.SerijskiBroj)
+                }
+
+
+            </td>
+            <td>
+                @if (item.Proizvod.Opis.IsEmpty())
+                {
+                    @Html.Label("Nema opisa")
+                }
+                else
+                {
+
+                    @Html.DisplayFor(modelItem => item.Proizvod.Opis)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RezultatiKontrole)
+            </td>
+
+            <td>
+                @if (item.ProizvodSiguran)
+                {
+                    @Html.Label("Da")
+                }
+                @if (!item.ProizvodSiguran)
+                {
+                    @Html.Label("Ne")
+                }
+            </td>
+
+
+
+        </tr>
+    }
+
+</table>
+
+<div id="buttons">
+    <button class="btn btn-link" onclick="printDetails()">Isprintaj izvještaj</button> |
+    @Html.ActionLink("Nazad", "CreateReport")
+</div>
+
+
+<style media="print">
+
+    .btn, #buttons {
+        display: none;
+    }
+    }
+</style>
+
+<script type="text/javascript">
+    function printDetails() {
+        window.print()
+
+    }
+</script>
+

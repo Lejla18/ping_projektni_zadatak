@@ -1,0 +1,106 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.InspekcijskaKontrola
+
+@{
+    ViewBag.Title = "Izvjestaj";
+}
+    <style>
+
+        label {
+            font-weight: normal !important;
+        }
+    </style>
+<br /><br />
+
+    <h4 align="center">Izvještaj o kontrolisanom proizvodu</h4>
+
+
+    <br /><br />
+
+
+    <table class="table">
+
+
+        <tr>
+            <th>
+                Naziv proizvoda
+            </th>
+            <th>
+                Serijski broj
+            </th>
+            <th>
+                Zemlja porijekla
+            </th>
+            <th>
+                Inspekcijsko tijelo
+            </th>
+            <th>
+                Datum kontrole
+            </th>
+            <th>
+                Rezultati kontrole
+            </th>
+          
+        </tr>
+
+
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Proizvod.NazivProizvoda)
+            </td>
+          
+            <td>
+                @if (Model.Proizvod.SerijskiBroj.IsEmpty())
+                {
+                    @Html.Label("Nepoznato")
+                }
+
+                else
+                {
+                    @Html.DisplayFor(model => model.Proizvod.SerijskiBroj)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Proizvod.ZemljaPorijekla)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.InspekcijskoTijelo.NazivTijela)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.DatumKontrole)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.RezultatiKontrole)
+            </td>
+
+        </tr>
+
+
+
+    </table>
+
+
+<div id="buttons">
+    <button class="btn btn-link" onclick="printDetails()">Isprintaj izvještaj</button> |
+    @Html.ActionLink("Nazad", "Details")
+</div>
+
+
+<style media="print">
+
+    .btn, #buttons {
+        display: none;
+    }
+   
+     
+       
+}   
+
+</style>
+
+<script type="text/javascript">
+    function printDetails() {
+        window.print()
+
+}
+</script>
+

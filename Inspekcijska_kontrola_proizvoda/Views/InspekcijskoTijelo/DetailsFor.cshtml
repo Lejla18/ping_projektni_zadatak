@@ -1,0 +1,56 @@
+﻿
+@model Inspekcijska_kontrola_proizvoda.Models.InspekcijskoTijelo
+<br /><br />
+<h4 style="color:red">Inspekcijsko tijelo sa registracijskim brojem @Html.DisplayFor(model => model.InspekcijskoTijeloID) je već unešeno : </h4>
+<br />
+<br />
+
+<div>
+
+
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.InspekcijskoTijeloID)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.InspekcijskoTijeloID)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.NazivTijela)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazivTijela)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InspektoratID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Inspektorat.NazivInspektorata)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nadleznost)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nadleznost)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KontaktOsoba)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KontaktOsoba)
+        </dd>
+
+    </dl>
+</div>
+
+
+<p>
+    @Html.ActionLink("Nazad", "Details")
+</p>

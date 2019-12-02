@@ -1,0 +1,120 @@
+﻿
+@using PagedList.Mvc
+@using PagedList
+@model IPagedList<Inspekcijska_kontrola_proizvoda.Models.Proizvod>
+
+<style>
+
+    label {
+        font-weight: normal !important;
+    }
+</style>
+
+
+<div class="text-danger">
+    @Html.ValidationSummary(false)
+</div>
+<br />
+
+<h3>Lista proizvoda</h3>
+@{
+    ViewBag.Title = "Lista proizvoda";
+}
+<br />
+
+
+
+@using (Html.BeginForm("Details", "Proizvod", FormMethod.Get))
+{
+    <b> Pretraga po:&nbsp </b>@Html.RadioButton("option", "NazivProizvoda") <text> Naziv Proizvoda</text> @Html.RadioButton("option", "SerijskiBroj") <text> Serijski broj</text>
+    @Html.RadioButton("option", "Proizvodjac")<text> Proizvođač&nbsp</text>
+
+    @Html.TextBox("search", null, new { autocomplete = "off" })
+    <input type="submit"
+           name="submit"
+           value="Search" class="btn btn-basic" style="margin-left:4px" />
+
+    <b style="float:right">
+        @Html.ActionLink("Unos novog proizvoda", "Create")
+    </b>
+}
+
+
+<br />
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NazivProizvoda)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Proizvodjac)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().SerijskiBroj)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ZemljaPorijekla)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Opis)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivProizvoda)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proizvodjac)
+            </td>
+            <td>
+                @if (item.SerijskiBroj.IsEmpty())
+                {
+                    @Html.Label("Nepoznato")
+                }
+
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.SerijskiBroj)
+                }
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ZemljaPorijekla)
+            </td>
+            <td>
+
+                @if (item.Opis == null)
+                {
+                    @Html.Label("Nema opisa");
+                }
+                else
+                {
+                    @Html.DisplayFor(modelItem => item.Opis)
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Izmjena proizvoda", "Edit", new { id = item.ProizvodID }) |
+                @Html.ActionLink("Brisanje proizvoda", "Delete", new { id = item.ProizvodID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Details", new
+{
+pageNumber,
+option = Request.QueryString["option"],
+search = Request.QueryString["search"]
+}))
+<div>
+    @Html.ActionLink("Nazad", "Index", "Home")
+</div>
+
+

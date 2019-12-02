@@ -1,0 +1,73 @@
+﻿@model Inspekcijska_kontrola_proizvoda.Models.InspekcijskaKontrola
+
+@{
+    ViewBag.Title = "Izmjena podataka";
+}
+<br /><br /><br />
+<h3>Izmjena podataka o inspekcijskoj kontroli</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+     
+      
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.InspekcijskaKontrolaID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProizvodID, "Proizvod", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Proizvod.NazivProizvoda , new { @class = "form-control", @readonly="readonly" })
+                @Html.ValidationMessageFor(model => model.ProizvodID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.InspekcijskoTijeloID, "Inspekcijsko tijelo", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.InspekcijskoTijelo.NazivTijela, new { @class = "form-control", @readonly = "readonly" })
+                @Html.ValidationMessageFor(model => model.InspekcijskoTijeloID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DatumKontrole, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+               
+                @Html.TextBoxFor(m => m.DatumKontrole, "{0:dd.MM.yyyy}", new { @class = "form-control datepicker" })
+                @Html.ValidationMessageFor(model => model.DatumKontrole, "", new { @class = "text-danger" })
+            </div>
+
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.RezultatiKontrole, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.RezultatiKontrole, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.RezultatiKontrole, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProizvodSiguran, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.ProizvodSiguran)
+                    @Html.ValidationMessageFor(model => model.ProizvodSiguran, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-warning btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Nazad", "Details")
+</div>

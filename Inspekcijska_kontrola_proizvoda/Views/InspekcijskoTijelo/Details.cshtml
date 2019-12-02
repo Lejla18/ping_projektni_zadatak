@@ -1,0 +1,91 @@
+﻿@using PagedList
+@using PagedList.Mvc
+@model IPagedList<Inspekcijska_kontrola_proizvoda.Models.InspekcijskoTijelo>
+<br />
+<h3>Lista inspekcijskih tijela</h3>
+
+
+@{
+    ViewBag.Title = "Inspekcijska tijela";
+}
+<br />
+<div class="text-danger">
+    @Html.ValidationSummary(false)
+</div>
+
+@using (Html.BeginForm("Details", "InspekcijskoTijelo", FormMethod.Get))
+{
+    <b> Pretraga po:&nbsp </b>@Html.RadioButton("option", "NazivTijela") <text> Naziv inspekcijskog tijela</text> @Html.RadioButton("option", "RegistarskiBroj") <text>Registarski broj</text>
+    @Html.RadioButton("option", "Inspektorat")<text> Inspektorata&nbsp</text>
+
+    @Html.TextBox("search", null, new { autocomplete = "off" })
+
+    <input type="submit"
+           name="submit"
+           value="Search" class="btn btn-basic" style="margin-left:4px"  />
+    <b style="float:right">
+        @Html.ActionLink("Unos novog inspekcijskog tijela", "Create")
+    </b>
+}
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().InspekcijskoTijeloID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().NazivTijela)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().InspektoratID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Nadleznost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().KontaktOsoba)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.InspekcijskoTijeloID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NazivTijela)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Inspektorat.NazivInspektorata)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nadleznost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KontaktOsoba)
+            </td>
+            <td>
+                @Html.ActionLink("Izmjena podataka", "Edit", new { id = item.InspekcijskoTijeloID }) |
+                @Html.ActionLink("Brisanje", "Delete", new { id = item.InspekcijskoTijeloID })
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Details", new
+{
+pageNumber,
+option = Request.QueryString["option"],
+search = Request.QueryString["search"]
+}))
+<div>
+    @Html.ActionLink("Nazad", "Index", "Home")
+
+</div>
+
